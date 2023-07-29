@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hetzner.cloud/v1/servers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.hetzner.cloud
+  response:
+    status:
+      code: 401
+      message: Unauthorized
+    headers:
+      Date:
+      - Sat, 29 Jul 2023 10:30:16 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '110'
+      Connection:
+      - keep-alive
+      Www-Authenticate:
+      - Basic realm="HC"
+      X-Correlation-Id:
+      - b0b7fc2f2ab902a
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "message": "unable to authenticate",
+            "code": "unauthorized",
+            "details": null
+          }
+        }
+  recorded_at: Sat, 29 Jul 2023 10:30:16 GMT
+recorded_with: VCR 6.2.0

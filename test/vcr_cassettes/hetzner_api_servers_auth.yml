@@ -1,0 +1,743 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hetzner.cloud/v1/servers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.hetzner.cloud
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 29 Jul 2023 10:16:26 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '15860'
+      Connection:
+      - keep-alive
+      Ratelimit-Limit:
+      - '3600'
+      Ratelimit-Remaining:
+      - '3599'
+      Ratelimit-Reset:
+      - '1690625787'
+      Link:
+      - "<https://api.hetzner.cloud/v1/servers?page=1>; rel=last"
+      X-Correlation-Id:
+      - 22076dba3d69fe45
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "servers": [
+            {
+              "id": 35341841,
+              "name": "server-one",
+              "status": "running",
+              "created": "2023-07-28T11:50:31+00:00",
+              "public_net": {
+                "ipv4": {
+                  "ip": "189.203.223.117",
+                  "blocked": false,
+                  "dns_ptr": "static.117.223.203.116.clients.your-server.de",
+                  "id": 35926958
+                },
+                "ipv6": {
+                  "ip": "2a01:4f8:c2c:e4e8::/64",
+                  "blocked": false,
+                  "dns_ptr": [],
+                  "id": 35926959
+                },
+                "floating_ips": [],
+                "firewalls": []
+              },
+              "private_net": [
+                {
+                  "network": 3169618,
+                  "ip": "10.15.1.1",
+                  "alias_ips": [],
+                  "mac_address": "86:00:00:53:b3:bc"
+                }
+              ],
+              "server_type": {
+                "id": 22,
+                "name": "cpx11",
+                "description": "CPX 11",
+                "cores": 2,
+                "memory": 2.0,
+                "disk": 40,
+                "deprecated": false,
+                "prices": [
+                  {
+                    "location": "ash",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "hel1",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "nbg1",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "hil",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "fsn1",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  }
+                ],
+                "storage_type": "local",
+                "cpu_type": "shared",
+                "architecture": "x86",
+                "included_traffic": 21990232555520,
+                "deprecation": null
+              },
+              "datacenter": {
+                "id": 2,
+                "name": "nbg1-dc3",
+                "description": "Nuremberg 1 virtual DC 3",
+                "location": {
+                  "id": 2,
+                  "name": "nbg1",
+                  "description": "Nuremberg DC Park 1",
+                  "country": "DE",
+                  "city": "Nuremberg",
+                  "latitude": 49.452102,
+                  "longitude": 11.076665,
+                  "network_zone": "eu-central"
+                },
+                "server_types": {
+                  "supported": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    45,
+                    93,
+                    94,
+                    95
+                  ],
+                  "available": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38
+                  ],
+                  "available_for_migration": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    96,
+                    97,
+                    98,
+                    99,
+                    100,
+                    101
+                  ]
+                }
+              },
+              "image": {
+                "id": 67794396,
+                "type": "system",
+                "status": "available",
+                "name": "ubuntu-22.04",
+                "description": "Ubuntu 22.04",
+                "image_size": null,
+                "disk_size": 5,
+                "created": "2022-04-21T13:32:38+00:00",
+                "created_from": null,
+                "bound_to": null,
+                "os_flavor": "ubuntu",
+                "os_version": "22.04",
+                "rapid_deploy": true,
+                "protection": {
+                  "delete": false
+                },
+                "deprecated": null,
+                "labels": {},
+                "deleted": null,
+                "architecture": "x86"
+              },
+              "iso": null,
+              "rescue_enabled": false,
+              "locked": false,
+              "backup_window": null,
+              "outgoing_traffic": 19645000,
+              "ingoing_traffic": 2356560000,
+              "included_traffic": 21990232555520,
+              "protection": {
+                "delete": false,
+                "rebuild": false
+              },
+              "labels": {
+                "role": "nat",
+                "network": "mrsk-test",
+                "created-by": "prvsn-hcloud-starter"
+              },
+              "volumes": [],
+              "load_balancers": [],
+              "primary_disk_size": 40,
+              "placement_group": null
+            },
+            {
+              "id": 35342020,
+              "name": "server-two",
+              "status": "running",
+              "created": "2023-07-28T11:56:01+00:00",
+              "public_net": {
+                "ipv4": null,
+                "ipv6": null,
+                "floating_ips": [],
+                "firewalls": []
+              },
+              "private_net": [
+                {
+                  "network": 3169618,
+                  "ip": "10.15.1.2",
+                  "alias_ips": [],
+                  "mac_address": "86:00:00:53:b3:ff"
+                }
+              ],
+              "server_type": {
+                "id": 23,
+                "name": "cpx21",
+                "description": "CPX 21",
+                "cores": 3,
+                "memory": 4.0,
+                "disk": 80,
+                "deprecated": false,
+                "prices": [
+                  {
+                    "location": "ash",
+                    "price_hourly": {
+                      "net": "0.0112000000",
+                      "gross": "0.0133280000000000"
+                    },
+                    "price_monthly": {
+                      "net": "7.0500000000",
+                      "gross": "8.3895000000000000"
+                    }
+                  },
+                  {
+                    "location": "nbg1",
+                    "price_hourly": {
+                      "net": "0.0112000000",
+                      "gross": "0.0133280000000000"
+                    },
+                    "price_monthly": {
+                      "net": "7.0500000000",
+                      "gross": "8.3895000000000000"
+                    }
+                  },
+                  {
+                    "location": "hel1",
+                    "price_hourly": {
+                      "net": "0.0112000000",
+                      "gross": "0.0133280000000000"
+                    },
+                    "price_monthly": {
+                      "net": "7.0500000000",
+                      "gross": "8.3895000000000000"
+                    }
+                  },
+                  {
+                    "location": "hil",
+                    "price_hourly": {
+                      "net": "0.0112000000",
+                      "gross": "0.0133280000000000"
+                    },
+                    "price_monthly": {
+                      "net": "7.0500000000",
+                      "gross": "8.3895000000000000"
+                    }
+                  },
+                  {
+                    "location": "fsn1",
+                    "price_hourly": {
+                      "net": "0.0112000000",
+                      "gross": "0.0133280000000000"
+                    },
+                    "price_monthly": {
+                      "net": "7.0500000000",
+                      "gross": "8.3895000000000000"
+                    }
+                  }
+                ],
+                "storage_type": "local",
+                "cpu_type": "shared",
+                "architecture": "x86",
+                "included_traffic": 21990232555520,
+                "deprecation": null
+              },
+              "datacenter": {
+                "id": 2,
+                "name": "nbg1-dc3",
+                "description": "Nuremberg 1 virtual DC 3",
+                "location": {
+                  "id": 2,
+                  "name": "nbg1",
+                  "description": "Nuremberg DC Park 1",
+                  "country": "DE",
+                  "city": "Nuremberg",
+                  "latitude": 49.452102,
+                  "longitude": 11.076665,
+                  "network_zone": "eu-central"
+                },
+                "server_types": {
+                  "supported": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    45,
+                    93,
+                    94,
+                    95
+                  ],
+                  "available": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38
+                  ],
+                  "available_for_migration": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    96,
+                    97,
+                    98,
+                    99,
+                    100,
+                    101
+                  ]
+                }
+              },
+              "image": {
+                "id": 67794396,
+                "type": "system",
+                "status": "available",
+                "name": "ubuntu-22.04",
+                "description": "Ubuntu 22.04",
+                "image_size": null,
+                "disk_size": 5,
+                "created": "2022-04-21T13:32:38+00:00",
+                "created_from": null,
+                "bound_to": null,
+                "os_flavor": "ubuntu",
+                "os_version": "22.04",
+                "rapid_deploy": true,
+                "protection": {
+                  "delete": false
+                },
+                "deprecated": null,
+                "labels": {},
+                "deleted": null,
+                "architecture": "x86"
+              },
+              "iso": null,
+              "rescue_enabled": false,
+              "locked": false,
+              "backup_window": null,
+              "outgoing_traffic": null,
+              "ingoing_traffic": null,
+              "included_traffic": 21990232555520,
+              "protection": {
+                "delete": false,
+                "rebuild": false
+              },
+              "labels": {
+                "role": "grafana",
+                "gateway": "10.15.1.1",
+                "network": "mrsk-test",
+                "created-by": "prvsn-hcloud-starter"
+              },
+              "volumes": [],
+              "load_balancers": [
+                1373071
+              ],
+              "primary_disk_size": 80,
+              "placement_group": null
+            },
+            {
+              "id": 35345212,
+              "name": "server-three",
+              "status": "off",
+              "created": "2023-07-28T13:40:25+00:00",
+              "public_net": {
+                "ipv4": null,
+                "ipv6": null,
+                "floating_ips": [],
+                "firewalls": []
+              },
+              "private_net": [
+                {
+                  "network": 3169618,
+                  "ip": "10.15.1.3",
+                  "alias_ips": [],
+                  "mac_address": "86:00:00:53:ba:b0"
+                }
+              ],
+              "server_type": {
+                "id": 22,
+                "name": "cpx11",
+                "description": "CPX 11",
+                "cores": 2,
+                "memory": 2.0,
+                "disk": 40,
+                "deprecated": false,
+                "prices": [
+                  {
+                    "location": "ash",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "hel1",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "nbg1",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "hil",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  },
+                  {
+                    "location": "fsn1",
+                    "price_hourly": {
+                      "net": "0.0063000000",
+                      "gross": "0.0074970000000000"
+                    },
+                    "price_monthly": {
+                      "net": "3.8500000000",
+                      "gross": "4.5815000000000000"
+                    }
+                  }
+                ],
+                "storage_type": "local",
+                "cpu_type": "shared",
+                "architecture": "x86",
+                "included_traffic": 21990232555520,
+                "deprecation": null
+              },
+              "datacenter": {
+                "id": 2,
+                "name": "nbg1-dc3",
+                "description": "Nuremberg 1 virtual DC 3",
+                "location": {
+                  "id": 2,
+                  "name": "nbg1",
+                  "description": "Nuremberg DC Park 1",
+                  "country": "DE",
+                  "city": "Nuremberg",
+                  "latitude": 49.452102,
+                  "longitude": 11.076665,
+                  "network_zone": "eu-central"
+                },
+                "server_types": {
+                  "supported": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    45,
+                    93,
+                    94,
+                    95
+                  ],
+                  "available": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38
+                  ],
+                  "available_for_migration": [
+                    1,
+                    3,
+                    5,
+                    7,
+                    9,
+                    22,
+                    23,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    30,
+                    31,
+                    32,
+                    33,
+                    34,
+                    35,
+                    36,
+                    37,
+                    38,
+                    96,
+                    97,
+                    98,
+                    99,
+                    100,
+                    101
+                  ]
+                }
+              },
+              "image": {
+                "id": 67794396,
+                "type": "system",
+                "status": "available",
+                "name": "ubuntu-22.04",
+                "description": "Ubuntu 22.04",
+                "image_size": null,
+                "disk_size": 5,
+                "created": "2022-04-21T13:32:38+00:00",
+                "created_from": null,
+                "bound_to": null,
+                "os_flavor": "ubuntu",
+                "os_version": "22.04",
+                "rapid_deploy": true,
+                "protection": {
+                  "delete": false
+                },
+                "deprecated": null,
+                "labels": {},
+                "deleted": null,
+                "architecture": "x86"
+              },
+              "iso": null,
+              "rescue_enabled": false,
+              "locked": false,
+              "backup_window": null,
+              "outgoing_traffic": null,
+              "ingoing_traffic": null,
+              "included_traffic": 21990232555520,
+              "protection": {
+                "delete": false,
+                "rebuild": false
+              },
+              "labels": {
+                "role": "server",
+                "created-by": "prvsn-hcloud-starter"
+              },
+              "volumes": [
+                35035115
+              ],
+              "load_balancers": [
+                1373071
+              ],
+              "primary_disk_size": 40,
+              "placement_group": null
+            }
+          ],
+          "meta": {
+            "pagination": {
+              "page": 1,
+              "per_page": 25,
+              "previous_page": null,
+              "next_page": null,
+              "last_page": 1,
+              "total_entries": 3
+            }
+          }
+        }
+  recorded_at: Sat, 29 Jul 2023 10:16:26 GMT
+recorded_with: VCR 6.2.0

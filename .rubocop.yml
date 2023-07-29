@@ -9,6 +9,18 @@ AllCops:
 Gemspec/DevelopmentDependencies:
   EnforcedStyle: gemspec
 
+Metrics/MethodLength:
+  Exclude:
+    - "**/*/test_*.rb"
+
+Metrics/AbcSize:
+  Exclude:
+    - "**/*/test_*.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*/test_*.rb"
+    - "*.gemspec"
 Style/Documentation:
   Enabled: false
 

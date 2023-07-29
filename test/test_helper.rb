@@ -4,6 +4,20 @@ $LOAD_PATH.unshift File.expand_path("../lib", __dir__)
 require "prometheus_exporter_hcloud_sd"
 
 require "minitest/autorun"
+require "mocha/minitest"
+
+require "vcr"
+
+VCR.configure do |config|
+  config.cassette_library_dir = "test/vcr_cassettes"
+  config.filter_sensitive_data("<BEARER_TOKEN>") do |interaction|
+    auths = interaction.request.headers["Authorization"].first
+    if (match = auths.match(/^Bearer\s+([^,\s]+)/))
+      match.captures.first
+    end
+  end
+  config.hook_into :webmock
+end
 
 class ThorTestCase < Minitest::Test
   StreamCapture = Struct.new(:stdout, :stderr, :original_stdout, :original_stderr)

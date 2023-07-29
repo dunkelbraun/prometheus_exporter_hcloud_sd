@@ -1,0 +1,66 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.hetzner.cloud/v1/servers
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <BEARER_TOKEN>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - api.hetzner.cloud
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sat, 29 Jul 2023 10:16:26 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '15860'
+      Connection:
+      - keep-alive
+      Ratelimit-Limit:
+      - '3600'
+      Ratelimit-Remaining:
+      - '3599'
+      Ratelimit-Reset:
+      - '1690625787'
+      Link:
+      - "<https://api.hetzner.cloud/v1/servers?page=1>; rel=last"
+      X-Correlation-Id:
+      - 22076dba3d69fe45
+      Strict-Transport-Security:
+      - max-age=15724800; includeSubDomains
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'true'
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "servers": [],
+          "meta": {
+            "pagination": {
+              "page": 1,
+              "per_page": 25,
+              "previous_page": null,
+              "next_page": null,
+              "last_page": 1,
+              "total_entries": 3
+            }
+          }
+        }
+  recorded_at: Sat, 29 Jul 2023 10:16:26 GMT
+recorded_with: VCR 6.2.0

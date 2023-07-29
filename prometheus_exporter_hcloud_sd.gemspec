@@ -29,10 +29,13 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "mocha", "~> 2.1"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "rubocop", "~> 1.21"
   spec.add_development_dependency "rubocop-minitest", "~> 0.31"
   spec.add_development_dependency "rubocop-rake", "~> 0.6"
+  spec.add_development_dependency "vcr", "~> 6.2"
+  spec.add_development_dependency "webmock", "~> 3.18"
 
   spec.add_dependency "thor", "~> 1.2"
 end
