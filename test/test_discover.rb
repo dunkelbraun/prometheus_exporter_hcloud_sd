@@ -26,23 +26,23 @@ class TestDiscoverCommand < ThorTestCase
 
   def test_discover_command
     VCR.use_cassette("hetzner_api_servers_auth") do
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.1 9104").returns(["", mock(success?: true)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.1 9121").returns(["", mock(success?: false)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.1 9114").returns(["", mock(success?: false)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.1 9187").returns(["", mock(success?: true)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.1 9127").returns(["", mock(success?: true)])
+      mock_service("10.15.1.1", 9104, true)
+      mock_service("10.15.1.1", 9121, false)
+      mock_service("10.15.1.1", 9114, false)
+      mock_service("10.15.1.1", 9187, true)
+      mock_service("10.15.1.1", 9127, true)
 
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.2 9104").returns(["", mock(success?: false)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.2 9121").returns(["", mock(success?: true)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.2 9114").returns(["", mock(success?: false)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.2 9187").returns(["", mock(success?: true)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.2 9127").returns(["", mock(success?: false)])
+      mock_service("10.15.1.2", 9104, false)
+      mock_service("10.15.1.2", 9121, true)
+      mock_service("10.15.1.2", 9114, false)
+      mock_service("10.15.1.2", 9187, true)
+      mock_service("10.15.1.2", 9127, false)
 
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.3 9104").returns(["", mock(success?: false)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.3 9121").returns(["", mock(success?: true)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.3 9114").returns(["", mock(success?: true)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.3 9187").returns(["", mock(success?: false)])
-      Open3.expects(:capture2e).with("timeout 1 nc -zv 10.15.1.3 9127").returns(["", mock(success?: false)])
+      mock_service("10.15.1.3", 9104, false)
+      mock_service("10.15.1.3", 9121, true)
+      mock_service("10.15.1.3", 9114, true)
+      mock_service("10.15.1.3", 9187, false)
+      mock_service("10.15.1.3", 9127, false)
 
       stdout, _stderr, status = run_cli_command("discover")
 
@@ -68,5 +68,69 @@ class TestDiscoverCommand < ThorTestCase
 
       assert_equal expected, stdout
     end
+  end
+
+  def test_discover_command_with_additional_exporters
+    VCR.use_cassette("hetzner_api_servers_auth") do
+      mock_service("10.15.1.1", 9104, true)
+      mock_service("10.15.1.1", 9121, false)
+      mock_service("10.15.1.1", 9114, false)
+      mock_service("10.15.1.1", 9187, true)
+      mock_service("10.15.1.1", 9127, true)
+      mock_service("10.15.1.1", 80, false)
+      mock_service("10.15.1.1", 9177, true)
+
+      mock_service("10.15.1.2", 9104, false)
+      mock_service("10.15.1.2", 9121, true)
+      mock_service("10.15.1.2", 9114, false)
+      mock_service("10.15.1.2", 9187, true)
+      mock_service("10.15.1.2", 9127, false)
+      mock_service("10.15.1.2", 80, true)
+      mock_service("10.15.1.2", 9177, false)
+
+      mock_service("10.15.1.3", 9104, false)
+      mock_service("10.15.1.3", 9121, true)
+      mock_service("10.15.1.3", 9114, true)
+      mock_service("10.15.1.3", 9187, false)
+      mock_service("10.15.1.3", 9127, false)
+      mock_service("10.15.1.3", 80, false)
+      mock_service("10.15.1.3", 9177, false)
+
+      stdout, _stderr, status = run_cli_command("discover", "--exporter", "traefik=80", "--exporter", "test=9177")
+
+      assert_equal 0, status
+
+      expected = <<~OUTPUT
+        - targets: ["10.15.1.1:9104"]
+          labels:
+            job: "mysql"
+        - targets: ["10.15.1.2:9121","10.15.1.3:9121"]
+          labels:
+            job: "redis"
+        - targets: ["10.15.1.3:9114"]
+          labels:
+            job: "elastic_search"
+        - targets: ["10.15.1.1:9187","10.15.1.2:9187"]
+          labels:
+            job: "postgres"
+        - targets: ["10.15.1.1:9127"]
+          labels:
+            job: "pgbouncer"
+        - targets: ["10.15.1.2:80"]
+          labels:
+            job: "traefik"
+        - targets: ["10.15.1.1:9177"]
+          labels:
+            job: "test"
+      OUTPUT
+
+      assert_equal expected, stdout
+    end
+  end
+
+  private
+
+  def mock_service(ip_address, port, success)
+    Open3.expects(:capture2e).with("timeout 1 nc -zv #{ip_address} #{port}").returns(["", mock(success?: success)])
   end
 end

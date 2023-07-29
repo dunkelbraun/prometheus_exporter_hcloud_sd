@@ -25,6 +25,20 @@ module PrometheusExporterHcloudSd
 
       Needs to be run inside the same network as the servers (uses the private IP of the servers).
 
+      By default it will discover the following exporters
+
+        - mysql at port 9104
+
+        - redis at port 9121
+
+        - elastic_search at port 9114
+
+        - postgres at port 9187
+
+        - pgbounce at port 9127
+
+      Example:
+
       > $ HCLOUD_READ_TOKEN=your-read-token prometheus_exporter_hcloud_sd discover
 
       - targets: ["10.15.1.1:9104"]
@@ -39,6 +53,8 @@ module PrometheusExporterHcloudSd
 
           job: "redis"
     LONGDESC
+    option :exporter, type: :string, repeatable: true, default: [],
+                      desc: "Additional exporters to discover. Format: <service_name>=<port>"
     def discover
       apply "discover.rb", verbose: false
     end

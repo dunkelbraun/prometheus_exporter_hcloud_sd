@@ -21,6 +21,11 @@ Metrics/BlockLength:
   Exclude:
     - "**/*/test_*.rb"
     - "*.gemspec"
+
+Metrics/ClassLength:
+  Exclude:
+    - "**/*/test_*.rb"
+
 Style/Documentation:
   Enabled: false
 

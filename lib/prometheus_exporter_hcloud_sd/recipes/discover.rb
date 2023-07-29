@@ -23,7 +23,12 @@ PORTS = {
 
 output = ""
 
-PORTS.each do |port, service|
+additional_ports = options[:exporter].each_with_object({}) do |exporter, acc|
+  service, port = exporter.split("=")
+  acc[port] = service.to_sym
+end
+
+PORTS.merge(additional_ports).each do |port, service|
   available_servers = server_ips.collect do |ip|
     command = "timeout 1 nc -zv #{ip} #{port}"
     _, status = Open3.capture2e(command)
