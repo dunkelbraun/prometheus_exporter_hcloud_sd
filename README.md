@@ -1,24 +1,78 @@
-# PrometheusExporterHcloudSd
+# prometheus_exporter_hcloud_sd
 
-TODO: Delete this and the text below, and describe your gem
+prometheus_exporter_hcloud_sd is a CLI tool that discovers Prometheus exporters in your Hetzner Cloud project and generates a Prometeus file-based service discovery YAML configuration for them.
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/prometheus_exporter_hcloud_sd`. To experiment with that code, run `bin/console` for an interactive prompt.
+## Description
+
+This tool is particularly useful when running multiple Prometheus exporters in a Hetzner Cloud environment and you want to automate the discovery and configuration process.
+
+`prometheus_exporter_hcloud_sd` utilizes the Hetzner Cloud API for exporter discovery. Therefore, it should be executed within the same network as the servers (it discovers exporters using the servers' private IP).
+
+By default, the tool will discover the following exporters:
+
+- MySQL at port 9104
+- Redis at port 9121
+- ElasticSearch at port 9114
+- Postgres at port 9187
+- PgBouncer at port 9127
+
+You can specify additional exporters to discover with the `--exporter` flag, followed by the service name and port, formatted as: `<service_name>=<port>`.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Install the gem with:
 
-Install the gem and add to the application's Gemfile by executing:
+```bash
+gem install prometheus_exporter_hcloud_sd
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+If you use bundler to manage dependencies, install the gem by executing:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+```bash
+bundle add prometheus_exporter_hcloud_sd
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+Before using `prometheus_exporter_hcloud_sd`, ensure the `HCLOUD_READ_TOKEN` environment variable is set with a Hetzner Cloud API token that has read permissions.
+
+```bash
+export HCLOUD_READ_TOKEN=your-read-token
+```
+
+Run the following command to discover exporters:
+
+```bash
+prometheus_exporter_hcloud_sd discover
+```
+
+The following is an example of a generated YAML configuration:
+
+```yaml
+- targets: ["10.15.1.1:9104"]
+  labels:
+    job: "mysql"
+
+- targets: ["10.15.1.2:9121","10.15.1.3:9121"]
+  labels:
+    job: "redis"
+```
+
+This YAML configuration can be used to set up the a file-based service discovery in Prometheus. For example, you can create a file called `hcloud_sd.yml` with the above content and then configure Prometheus to use it:
+
+```yaml
+scrape_configs:
+- job_name: 'node'
+  file_sd_configs:
+  - files:
+    - 'hcloud_sd.yml'
+```
+
+To discover additional exporters, use the --exporter flag (can be used multiple times):
+
+```bash
+prometheus_exporter_hcloud_sd discover --exporter traefik=80
+```
 
 ## Development
 
@@ -28,7 +82,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/prometheus_exporter_hcloud_sd. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/prometheus_exporter_hcloud_sd/blob/main/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at <https://github.com/dunkelbraun/prometheus_exporter_hcloud_sd>.
+
+This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/dunkelbraun/prometheus_exporter_hcloud_sd/blob/main/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -36,4 +92,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the PrometheusExporterHcloudSd project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/prometheus_exporter_hcloud_sd/blob/main/CODE_OF_CONDUCT.md).
+Everyone interacting in the PrometheusExporterHcloudSd project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/dunkelbraun/prometheus_exporter_hcloud_sd/blob/main/CODE_OF_CONDUCT.md).
