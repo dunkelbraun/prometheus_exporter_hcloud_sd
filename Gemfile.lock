@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     prometheus_exporter_hcloud_sd (0.1.0)
+      thor (~> 1.2)
 
 GEM
   remote: https://rubygems.org/
@@ -37,6 +38,7 @@ GEM
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
     ruby-progressbar (1.13.0)
+    thor (1.2.2)
     unicode-display_width (2.4.2)
 
 PLATFORMS

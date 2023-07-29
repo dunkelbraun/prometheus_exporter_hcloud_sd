@@ -25,7 +25,7 @@ Gem::Specification.new do |spec|
     end
   end
   spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.executables = %w[prometheus_exporter_hcloud_sd]
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "minitest", "~> 5.0"
@@ -33,4 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rubocop", "~> 1.21"
   spec.add_development_dependency "rubocop-minitest", "~> 0.31"
   spec.add_development_dependency "rubocop-rake", "~> 0.6"
+
+  spec.add_dependency "thor", "~> 1.2"
 end
