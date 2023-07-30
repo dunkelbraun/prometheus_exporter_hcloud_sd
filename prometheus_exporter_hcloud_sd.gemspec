@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.metadata["rubygems_mfa_required"] = "true"
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/dunkelbraun/turbo_test_events/tree/main"
+  spec.metadata["source_code_uri"] = "https://github.com/dunkelbraun/prometheus_exporter_hcloud_sd/tree/main"
   spec.metadata["changelog_uri"] = "https://github.com/dunkelbraun/prometheus_exporter_hcloud_sd/blob/main/CHANGELOG.md"
 
   spec.files = Dir.chdir(__dir__) do
