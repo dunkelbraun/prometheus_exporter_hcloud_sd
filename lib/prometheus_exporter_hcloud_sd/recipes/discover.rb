@@ -4,7 +4,13 @@ require "uri"
 require "open3"
 
 SERVERS_URI = URI.parse("https://api.hetzner.cloud/v1/servers").freeze
-AUTH_HEADER = { Authorization: "Bearer #{ENV.fetch("HCLOUD_READ_TOKEN", nil)}" }.freeze
+token = begin
+  ENV.fetch("HCLOUD_READ_TOKEN")
+rescue KeyError
+  raise Thor::Error, "Cannot continue.\nPlease set the HCLOUD_READ_TOKEN environment variable."
+end
+
+AUTH_HEADER = { Authorization: "Bearer #{token}" }.freeze
 
 response = Net::HTTP.get(SERVERS_URI, AUTH_HEADER)
 json_response = JSON.parse(response, symbolize_names: true)

@@ -28,6 +28,7 @@ Gem::Specification.new do |spec|
   spec.executables = %w[prometheus_exporter_hcloud_sd]
   spec.require_paths = ["lib"]
 
+  spec.add_development_dependency "climate_control", "~> 1.2"
   spec.add_development_dependency "minitest", "~> 5.0"
   spec.add_development_dependency "mocha", "~> 2.1"
   spec.add_development_dependency "rake", "~> 13.0"

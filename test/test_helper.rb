@@ -7,6 +7,7 @@ require "minitest/autorun"
 require "mocha/minitest"
 
 require "vcr"
+require "climate_control"
 
 VCR.configure do |config|
   config.cassette_library_dir = "test/vcr_cassettes"
