@@ -2,15 +2,12 @@
 
 require "thor"
 require_relative "prometheus_exporter_hcloud_sd/version"
+require_relative "prometheus_exporter_hcloud_sd/discovery_config"
 
 module PrometheusExporterHcloudSd
   class Error < StandardError; end
 
   class CLI < Thor
-    include Thor::Actions
-
-    source_paths << File.expand_path("lib/prometheus_exporter_hcloud_sd/recipes")
-
     def self.exit_on_failure?
       true
     end
@@ -56,7 +53,7 @@ module PrometheusExporterHcloudSd
     option :exporter, type: :string, repeatable: true, default: [],
                       desc: "Additional exporters to discover. Format: <service_name>=<port>"
     def discover
-      apply "discover.rb", verbose: false
+      puts PrometheusExporterHcloudSd::DiscoveryConfig.generate(options)
     end
   end
 end
