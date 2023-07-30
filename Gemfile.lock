@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    prometheus_exporter_hcloud_sd (0.1.0)
+    prometheus_exporter_hcloud_sd (0.1.1)
       thor (~> 1.2)
 
 GEM
